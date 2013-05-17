@@ -162,7 +162,7 @@ public class CSGModel : MonoBehaviour
 				// Set the mesh to be rendered
 		        materialMesh.GetComponent<MeshFilter>().mesh = mesh;
 				// Set the collision mesh
-		        materialMesh.GetComponent<MeshCollider>().mesh = mesh;
+		        materialMesh.GetComponent<MeshCollider>().sharedMesh = mesh;
 				
 				materialMesh.renderer.material = polygonMaterialGroup.Key;
 			}
@@ -188,7 +188,7 @@ public class CSGModel : MonoBehaviour
         {
             brushes = new List<Brush>();
         }
-        GameObject instantiatedBrush = (GameObject)Instantiate(activeBrush.gameObject);
+        GameObject instantiatedBrush = (GameObject)Instantiate(activeBrush.gameObject, activeBrush.transform.position, activeBrush.transform.rotation);
         instantiatedBrush.transform.parent = this.transform;
         instantiatedBrush.name = "AppliedBrush";
         DestroyImmediate(instantiatedBrush.GetComponent<ActiveBrush>());
